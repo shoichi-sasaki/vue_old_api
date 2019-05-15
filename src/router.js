@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import PageNotFount from "@/views/PageNotFound";
 
 Vue.use(Router);
 
@@ -13,6 +14,12 @@ export default new Router({
       name: "home",
       component: Home
     },
+		{
+			path: "/API_Cat",
+			name: "apicat",
+			component: () =>
+			import("./views/Api.vue")
+		},
     {
       path: "/about",
       name: "about",
@@ -21,6 +28,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "*",
+      name: 'page_not_found',
+      component: PageNotFount,
     }
   ]
 });
